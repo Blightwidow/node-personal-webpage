@@ -1,0 +1,24 @@
+{
+  "short_name": "Theo's CV",
+  "name": "Theo Dammaretz online resume",
+  "description": "Theo Dammaretz online business card and resume homemade website",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#073642",
+  "icons": [{
+      "src": "/images/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#073642",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "dir": "ltr"
+}

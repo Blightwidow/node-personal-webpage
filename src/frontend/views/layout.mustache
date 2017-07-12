@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      {{ title }}
+    </title>
+    {{> partials/rich-snippet }}
+    {{> partials/head }}
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <div class="left-wrapper">
+        <header class="site-header">
+          <h1 class="console-text">
+            {{ headerTitle }}
+          </h1>
+          <h2 class="console-text caret">
+            {{ headerSubTitle }}
+          </h2>
+        </header>
+        <nav class="social-wrapper">
+          {{# social }}
+            {{> partials/social-links }}
+          {{/ social }}
+        </nav>
+        <main id="main">
+          <div class="bio-wrapper">
+            {{ bio }}
+          </div>
+          {{ bioFooter }}
+        </main>
+      </div>
+      {{> partials/right-wrapper }}
+    </div>
+    {{> partials/scripts }}
+    {{> partials/github-corner }}
+  </body>
+</html>
