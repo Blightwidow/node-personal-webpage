@@ -1,3 +1,3 @@
-namespace Core.Entities {
+export class UserInfo {
 
 }

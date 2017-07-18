@@ -8,7 +8,7 @@ const parts = require('./webpack.config.parts');
 const baseConfig = {
   name: 'frontend',
   entry: {
-    bundle: path.join(__dirname, 'src/frontend/public/js/bundle/index.ts'),
+    bundle: path.join(__dirname, 'src/frontend/public/js/bundle/main.ts'),
     sw: path.join(__dirname, 'src/frontend/public/js/serviceWorker/index.ts'),
     style: path.join(__dirname, 'src/frontend/public/css/_MAIN_.css'),
     images: glob.sync(path.join(__dirname, 'src/frontend/public/images/**.*')),
