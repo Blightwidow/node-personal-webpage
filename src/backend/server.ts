@@ -25,8 +25,8 @@ console.log(path.join(__dirname, "public"));
 /**
  * Primary app routes.
  */
-// FIXME After backend build
-// TODO add app-cache
+// FIXME: After backend build
+// TODO: add app-cache
 app.get("/", (req, res) => {
   res.render("layout", { title: "Theo Dammaretz", social: true });
 });
