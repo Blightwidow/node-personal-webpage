@@ -1,33 +1,43 @@
-export class EasterEggHandler {
-    private static HEART_SYMBOL = "\u2665";
+import { EventHandler } from "./eventHandler";
 
-    public static console() {
-        if (EasterEggHandler.hasConsoleLog()) {
-            EasterEggHandler.printConsoleEasterEgg();
-        }
-    }
+export class EasterEggHandler extends EventHandler {
+  private static HEART_SYMBOL = "\u2665";
 
-    public static printMore() {
-        console.group("Infos");
-        console.log("Email: ", "theo@dammaretz.fr");
-        console.log("PGP: ", "http://dammaretz.fr/public-key.txt");
-        console.log("Github: ", "https://github.com/Blightwidow");
-        console.log("Philosophy: ", "Keep calm and improve everyday");
-        console.log("City: ", "Moscow");
-        console.log("Message of the day: ", "Feel free to contact me if you found this easter egg as I respect your privacy and don\"t log your visits");
-        console.groupEnd();
+  public handle(evt: Event): void {
+    if (this.hasConsoleLog()) {
+      this.registerKnowMoreFunc();
+      this.printConsoleEasterEgg();
     }
+  }
 
-    private static printConsoleEasterEgg() {
-        console.log(
-            `%c ${EasterEggHandler.HEART_SYMBOL} web & perfomance ?%c _> %cknowMore();`,
-            "color: red;",
-            "color: white;",
-            "border: solid 1px #d1d1d8; border-radius: 3px; background: #e7e7e9; font-family: monospace; color: #C25; padding: 2px 3px 1px;"
-        );
-    }
+  private printConsoleEasterEgg(): void {
+    console.log(
+      `%c ${EasterEggHandler.HEART_SYMBOL} web & perfomance ?%c _> %cknowMore();`,
+      "color: red;",
+      "color: white;",
+      "border: solid 1px #d1d1d8; border-radius: 3px; background: #e7e7e9; font-family: monospace; color: #C25; padding: 2px 3px 1px;"
+    );
+  }
 
-    private static hasConsoleLog(): boolean {
-        return !!(window.console && window.console.log);
-    }
+  private hasConsoleLog(): boolean {
+    return !!(window.console && window.console.log);
+  }
+
+  private registerKnowMoreFunc(): void {
+    (<any>window).knowMore = this.printMore;
+  }
+
+  public printMore(): void {
+    console.group("Infos");
+    console.log("Email: ", "theo@dammaretz.fr");
+    console.log("PGP: ", "http://dammaretz.fr/public-key.txt");
+    console.log("Github: ", "https://github.com/Blightwidow");
+    console.log("Philosophy: ", "Keep calm and improve everyday");
+    console.log("City: ", "Moscow");
+    console.log(
+      "Message of the day: ",
+      'Feel free to contact me if you found this easter egg as I respect your privacy and don"t log your visits'
+    );
+    console.groupEnd();
+  }
 }

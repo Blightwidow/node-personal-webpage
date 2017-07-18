@@ -1,32 +1,37 @@
-export class CacheHandler {
-    private static SERVICE_WORKER_PATH = "/sw.js";
-    private static APP_CACHE_PATH = "/load-appcache.html";
+import { EventHandler } from "./eventHandler";
 
-    public static register(evt: Event) {
-        if (CacheHandler.hasServiceWorker()) {
-            CacheHandler.registerServiceWorker(CacheHandler.SERVICE_WORKER_PATH);
-        } else if (CacheHandler.hasAppCache()) {
-            CacheHandler.registerAppCache(CacheHandler.APP_CACHE_PATH);
-        }
-    }
+export class CacheHandler extends EventHandler {
+  private static SERVICE_WORKER_PATH = "/sw.js";
+  private static APP_CACHE_PATH = "/load-appcache.html";
 
-    private static registerServiceWorker(path: string) {
-        navigator.serviceWorker.register(path, { scope: "/"})
-        .catch((error) => console.error("ServiceWorker registration failed: ", error));
+  public handle(evt: Event): void {
+    if (this.hasServiceWorker()) {
+      this.registerServiceWorker(CacheHandler.SERVICE_WORKER_PATH);
+    } else if (this.hasAppCache()) {
+      this.registerAppCache(CacheHandler.APP_CACHE_PATH);
     }
+  }
 
-    private static registerAppCache(path: string) {
-        const appCacheIframe = document.createElement("iframe");
-        appCacheIframe.style.display = "none";
-        appCacheIframe.src = path;
-        document.body.appendChild(appCacheIframe);
-    }
+  private registerServiceWorker(path: string): void {
+    navigator.serviceWorker
+      .register(path, { scope: "/" })
+      .catch((error: Error) =>
+        console.error("ServiceWorker registration failed: ", error)
+      );
+  }
 
-    private static hasServiceWorker(): boolean {
-        return ("serviceWorker" in navigator);
-    }
+  private registerAppCache(path: string): void {
+    const appCacheIframe = document.createElement("iframe");
+    appCacheIframe.style.display = "none";
+    appCacheIframe.src = path;
+    document.body.appendChild(appCacheIframe);
+  }
 
-    private static hasAppCache(): boolean {
-        return ("applicationCache" in window);
-    }
+  private hasServiceWorker(): boolean {
+    return "serviceWorker" in navigator;
+  }
+
+  private hasAppCache(): boolean {
+    return "applicationCache" in window;
+  }
 }
