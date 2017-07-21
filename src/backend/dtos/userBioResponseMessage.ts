@@ -1,4 +1,4 @@
-import * as Interfaces from "../interfaces";
+import * as Interface from "../interfaces";
 
-export class UserBioResponseMessage implements Interfaces.Response {
+export class UserBioResponseMessage implements Interface.Response {
 }

@@ -1,9 +1,8 @@
-import * as Interfaces from "../interfaces";
+import * as Interface from "../interfaces";
+import * as Entity from "../entities";
 
-export class requestUserBioInteractor implements Interfaces.RequestHandler {
-  public constructor() {}
-
-  public handle(req: Interfaces.Request): Interfaces.Response {
-    return;
+export class RequestUserBioInteractor implements Interface.RequestHandler {
+  public handle(req: Interface.Request): Interface.Response {
+    return null;
   }
 }
