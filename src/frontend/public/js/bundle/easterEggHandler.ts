@@ -3,14 +3,14 @@ import { EventHandler } from "./eventHandler";
 export class EasterEggHandler extends EventHandler {
   private static HEART_SYMBOL = "\u2665";
 
-  public handle(evt: Event): void {
+  public handle(evt: Event) {
     if (this.hasConsoleLog()) {
       this.registerKnowMoreFunc();
       this.printConsoleEasterEgg();
     }
   }
 
-  private printConsoleEasterEgg(): void {
+  private printConsoleEasterEgg() {
     console.log(
       `%c ${EasterEggHandler.HEART_SYMBOL} web & perfomance ?%c _> %cknowMore();`,
       "color: red;",
@@ -23,11 +23,11 @@ export class EasterEggHandler extends EventHandler {
     return !!(window.console && window.console.log);
   }
 
-  private registerKnowMoreFunc(): void {
+  private registerKnowMoreFunc() {
     (<any>window).knowMore = this.printMore;
   }
 
-  public printMore(): void {
+  public printMore() {
     console.group("Infos");
     console.log("Email: ", "theo@dammaretz.fr");
     console.log("PGP: ", "http://dammaretz.fr/public-key.txt");

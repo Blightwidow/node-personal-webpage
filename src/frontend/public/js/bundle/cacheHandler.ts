@@ -4,7 +4,7 @@ export class CacheHandler extends EventHandler {
   private static SERVICE_WORKER_PATH = "/sw.js";
   private static APP_CACHE_PATH = "/load-appcache.html";
 
-  public handle(evt: Event): void {
+  public handle(evt: Event) {
     if (this.hasServiceWorker()) {
       this.registerServiceWorker(CacheHandler.SERVICE_WORKER_PATH);
     } else if (this.hasAppCache()) {
@@ -12,7 +12,7 @@ export class CacheHandler extends EventHandler {
     }
   }
 
-  private registerServiceWorker(path: string): void {
+  private registerServiceWorker(path: string) {
     navigator.serviceWorker
       .register(path, { scope: "/" })
       .catch((error: Error) =>
@@ -20,7 +20,7 @@ export class CacheHandler extends EventHandler {
       );
   }
 
-  private registerAppCache(path: string): void {
+  private registerAppCache(path: string) {
     const appCacheIframe = document.createElement("iframe");
     appCacheIframe.style.display = "none";
     appCacheIframe.src = path;

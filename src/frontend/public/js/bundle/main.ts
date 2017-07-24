@@ -2,7 +2,7 @@ import { CacheHandler } from "./cacheHandler";
 import { EasterEggHandler } from "./easterEggHandler";
 import { LazyloadHandler } from "./lazyloadHandler";
 
-function main(): void {
+function main() {
   const HANDLE_ASSOCS = [
     {evts: ["load"], handler: new CacheHandler()},
     {evts: ["load"], handler: new EasterEggHandler()},
