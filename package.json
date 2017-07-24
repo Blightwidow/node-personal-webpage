@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --forceExit",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --coverage",
     "lint": "npm run -s tslint && npm run -s csslint",
     "tslint": "tslint --fix -c tslint.json -p tsconfig.json",
     "csslint": "stylelint --fix src/**/*.css",
@@ -28,7 +28,11 @@
     "testMatch": [
       "**/test/**/*.test.(ts|js)"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/backend/**/*.ts",
+      "!src/**/index.ts"
+    ]
   },
   "dependencies": {
     "compression": "^1.6.2",

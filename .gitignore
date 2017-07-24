@@ -23,5 +23,8 @@ Thumbs.db
 # Ignore built files
 dist/
 
-# IDE
+# Ignore IDE folders
 .vscode
+
+# Ignore test results
+coverage/

@@ -1,7 +1,14 @@
 import { ContactPoint } from "../src/backend/entities";
 
 describe("Build a simple contact point", () => {
-  let contact = new ContactPoint(0, "tel:000");
+  let error = null;
+  let contact = null;
+
+  try {
+    contact = new ContactPoint(0, "tel:000");
+  } catch (e) {
+    error = e;
+  }
   it("should have a type", () => {
     expect(contact.type).toEqual(ContactPoint.Type.Email);
   });
@@ -11,9 +18,11 @@ describe("Build a simple contact point", () => {
 });
 
 describe("Build a faulty contact point", () => {
-  let error;
+  let error = null;
+  let contact = null;
+
   try {
-    new ContactPoint(0, "random-stuff");
+    contact = new ContactPoint(0, "random-stuff");
   } catch (e) {
     error = e;
   }
