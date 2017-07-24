@@ -1,1 +1,1 @@
-export * from "./requestUserBioInteractor";
+export * from "./requestUserInfoInteractor";
