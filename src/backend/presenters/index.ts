@@ -1,2 +1,2 @@
-export * from "./requestUserBioPresenter";
-export * from "./requestUserBioViewModel";
+export * from "./requestUserInfoPresenter";
+export * from "./requestUserInfoViewModel";
