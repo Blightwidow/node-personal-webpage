@@ -1,10 +1,12 @@
-/**
- * Module dependencies.
- */
 import * as express from "express";
 import * as path from "path";
 import * as compression from "compression";
 import * as mustache from "express-mustache";
+
+import * as Dto from "../dtos";
+import * as Gateway from "../gateways";
+import * as Interactor from "../interactors";
+import * as Presenter from "../presenters";
 
 export class ExpressServer {
   private app = express();
@@ -26,8 +28,19 @@ export class ExpressServer {
   }
 
   public start() {
+    const userRepository = new Gateway.UserRepository();
+
     this.app.get("/", (req, res) => {
-      res.render("layout", { title: "Theo Dammaretz", social: true });
+      const request = new Dto.UserInfoRequestMessage(0);
+      const interactor = new Interactor.RequestUserInfoInteractor(userRepository);
+
+      const response = interactor.handle(request);
+
+      const vm = new Presenter.RequestUserInfoPresenter().handle(response);
+
+      console.log(vm);
+
+      res.render("layout", vm.data);
     });
     this.app.get("/404", (req, res) => {
       res.render("404", {});

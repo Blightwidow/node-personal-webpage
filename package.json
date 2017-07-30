@@ -30,7 +30,8 @@
     ],
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "src/backend/**/*.ts",
+      "src/backend/*/**/*.ts",
+      "!src/backend/infrastructures/**.ts",
       "!src/**/index.ts"
     ]
   },

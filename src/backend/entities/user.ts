@@ -5,6 +5,7 @@ export class User {
   readonly firstName: string;
   readonly lastName: string;
   readonly dateOfBirth: Date;
+  readonly position: string;
   readonly contactInfos: Array<ContactPoint>;
   readonly biography: Array<string>;
   private static DATE_OF_BIRTH_FORMAT = /^\d{2}-\d{2}-\d{4}$/;
@@ -14,12 +15,15 @@ export class User {
     firstName: string,
     lastName: string,
     dateOfBirthString: string, // FORMAT: MM-DD-YYYY
+    position: string,
     contactInfos: Array<ContactPoint>,
     biography: Array<string>
   ) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.contactInfos = contactInfos;
+    this.position = position;
     if (User.DATE_OF_BIRTH_FORMAT.test(dateOfBirthString)) {
       this.dateOfBirth = new Date(dateOfBirthString);
     } else {
