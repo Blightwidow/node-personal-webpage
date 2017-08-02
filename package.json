@@ -11,8 +11,8 @@
     "tslint": "tslint --fix -c tslint.json -p tsconfig.json",
     "csslint": "stylelint --fix src/**/*.css",
     "build": "webpack --env production",
-    "start": "node dist/server.js",
-    "watch": "concurrently -k --names \"Webpack,Node\" -c \"blue.bold,magenta.bold\" \"webpack --colors -w\" \"nodemon dist/server.js\""
+    "start": "node server.js",
+    "watch": "concurrently -k --names \"Webpack,Node\" -c \"blue.bold,magenta.bold\" \"webpack --colors -w\" \"nodemon app/server.js\""
   },
   "jest": {
     "globals": {

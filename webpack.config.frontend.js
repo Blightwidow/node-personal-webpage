@@ -16,7 +16,7 @@ const baseConfig = {
     views: glob.sync(path.join(__dirname, 'src/frontend/views/**/*.mustache')),
   },
   output: {
-    path: path.join(__dirname, 'dist/public'),
+    path: path.join(__dirname, 'app/public'),
     filename: '[name].js',
     chunkFilename: "[id].js"
   },
