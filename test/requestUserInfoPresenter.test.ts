@@ -1,27 +1,22 @@
-import { RequestUserInfoPresenter } from "../src/backend/presenters";
-import { UserInfoResponseMessage } from "../src/backend/dtos";
-import { User, ContactPoint } from "../src/backend/entities";
+import * as Presenter from "../src/backend/presenters";
+import * as Dto from "../src/backend/dtos";
+import * as Entity from "../src/backend/entities";
 
-const presenter = new RequestUserInfoPresenter();
+const presenter = new Presenter.RequestUserInfoPresenter();
 
 describe("Present a complete user", () => {
-  const user = new User(
-    0,
-    "theo",
-    "dammaretz",
-    "01-14-1993",
-    "Web and Software engineer",
-    [
-      new ContactPoint(ContactPoint.Type.Email, "theo@dammaretz.fr"),
-      new ContactPoint(ContactPoint.Type.Website, "http://dammaretz.fr"),
-      new ContactPoint(ContactPoint.Type.Phone, "+33476891901"),
-      new ContactPoint(ContactPoint.Type.Resume, "http://a.f")
-    ],
-    [
-      "Bonjour",
-      "Je suis theo"
-    ]);
-  const vm = presenter.handle(new UserInfoResponseMessage(user, true, ""));
+  const user = new Entity.User(
+      "theo",
+      "dammaretz",
+      "01-14-1993",
+      "Web and Software engineer",
+      ["Bonjour", "Je suis theo"],
+      "theo@dammaretz.fr",
+      "https://github.com/Blightwidow",
+      "https://www.linkedin.com/in/theodammaretz/",
+      "https://github.com/Blightwidow/latex-cv/raw/build/cv.pdf",
+    );
+  const vm = presenter.handle(new Dto.UserInfoResponseMessage(user, true, ""));
 
   it("should be a success", () => {
     expect(vm.success).toBeTruthy();
@@ -34,18 +29,11 @@ describe("Present a complete user", () => {
       title: "Theo Dammaretz online resume",
       headerTitle: "Theo Dammaretz",
       headerSubtitle: "Web and Software engineer",
-      contactPoints: [{
-        address: "mailto:theo@dammaretz.fr",
-        type: "email"
-      }, {
-        address: "http://dammaretz.fr",
-        type: "website"
-      }, {
-        address: "tel:+33476891901",
-        type: "phone"
-      }],
       biography: ["Bonjour", "Je suis theo"],
-      resumeAddress: "http://a.f"
+      email: "mailto:theo@dammaretz.fr",
+      linkedin: "https://www.linkedin.com/in/theodammaretz/",
+      github: "https://github.com/Blightwidow",
+      resume: "https://github.com/Blightwidow/latex-cv/raw/build/cv.pdf"
     });
   });
 });
@@ -53,7 +41,7 @@ describe("Present a complete user", () => {
 
 describe("Present an error message", () => {
   const user = undefined;
-  const vm = presenter.handle(new UserInfoResponseMessage(user, false, "Random error"));
+  const vm = presenter.handle(new Dto.UserInfoResponseMessage(user, false, "Random error"));
 
   it("should be a success", () => {
     expect(vm.success).toBeFalsy();

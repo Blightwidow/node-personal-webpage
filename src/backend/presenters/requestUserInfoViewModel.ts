@@ -14,28 +14,15 @@ export class RequestUserInfoViewModel implements Interface.ViewModel {
       this.data.title = `${userData.fullname} online resume`;
       this.data.headerTitle = userData.fullname;
       this.data.headerSubtitle = userData.position;
-      this.data.contactPoints = this.formatContactPoints(this.data.contactPoints);
+      this.data.email = this.formatEmail(userData.email);
     }
   }
 
-  private formatContactPoints(contactPoints: Array<Entity.ContactPoint>): Array<any> {
-    const formattedContactPoints = <Array<any>>contactPoints;
-    for (let i = 0; i < contactPoints.length; i++) {
-      formattedContactPoints[i].address = this.formatContactPointsAddress(contactPoints[i]);
-    }
-    return formattedContactPoints;
-  }
-
-  private formatContactPointsAddress(point: Entity.ContactPoint): string {
-      switch (point.type) {
-        case Entity.ContactPoint.Type.Website:
-          return point.address;
-        case Entity.ContactPoint.Type.Email:
-          return `mailto:${point.address}`;
-        case Entity.ContactPoint.Type.Phone:
-          return `tel:${point.address}`;
-        default:
-          return undefined;
+  private formatEmail(email: string): string {
+    if (email) {
+      return `mailto:${email}`;
+    } else {
+      return undefined;
     }
   }
 }

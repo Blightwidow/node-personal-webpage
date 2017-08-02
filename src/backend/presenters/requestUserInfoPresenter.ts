@@ -16,9 +16,11 @@ export class RequestUserInfoPresenter {
     return {
       fullname: this.getFullname(user),
       position: user.position,
-      contactPoints: this.getSocialLinks(user),
+      email: user.email,
+      linkedin: user.linkedin,
+      github: user.github,
       biography: user.biography,
-      resumeAddress: this.getResumeAddress(user)
+      resume: user.resume
     };
   }
 
@@ -28,25 +30,5 @@ export class RequestUserInfoPresenter {
     const lastName =
       user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
     return `${firstName} ${lastName}`;
-  }
-
-  private getSocialLinks(user: Entity.User): Array<Object> {
-    const socialLinks = [];
-    for (let i = 0; i < user.contactInfos.length; i++) {
-      const contact = user.contactInfos[i];
-      if (contact.type !== Entity.ContactPoint.Type.Resume) {
-        socialLinks.push(contact);
-      }
-    }
-    return socialLinks;
-  }
-
-  private getResumeAddress(user: Entity.User): string {
-    for (let i = 0; i < user.contactInfos.length; i++) {
-      if (user.contactInfos[i].type === Entity.ContactPoint.Type.Resume) {
-        return user.contactInfos[i].address;
-      }
-    }
-    return undefined;
   }
 }

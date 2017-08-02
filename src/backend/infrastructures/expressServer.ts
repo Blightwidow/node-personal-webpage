@@ -12,11 +12,6 @@ export class ExpressServer {
   private app = express();
 
   constructor() {
-    this.app = express();
-    this.setupServer();
-  }
-
-  private setupServer() {
     this.app.set("port", 3000);
     this.app.set("views", path.join(__dirname, "views"));
     this.app.set("view engine", "mustache");
@@ -31,15 +26,12 @@ export class ExpressServer {
     const userRepository = new Gateway.UserRepository();
 
     this.app.get("/", (req, res) => {
-      const request = new Dto.UserInfoRequestMessage(0);
+      const request = new Dto.UserInfoRequestMessage();
       const interactor = new Interactor.RequestUserInfoInteractor(userRepository);
 
       const response = interactor.handle(request);
 
       const vm = new Presenter.RequestUserInfoPresenter().handle(response);
-
-      console.log(vm);
-
       res.render("layout", vm.data);
     });
     this.app.get("/404", (req, res) => {

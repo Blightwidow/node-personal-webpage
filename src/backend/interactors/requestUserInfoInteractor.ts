@@ -15,7 +15,7 @@ export class RequestUserInfoInteractor implements Interface.RequestHandler {
     let isSuccess = true;
 
     try {
-      user = this._userRepository.getById(req.userId);
+      user = this._userRepository.getUser();
     }
     catch (e) {
       errorMessage = e.message;
