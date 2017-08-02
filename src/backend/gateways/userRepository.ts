@@ -6,7 +6,7 @@ export class UserRepository implements Interface.UserRepository {
       firstName: "theo",
       lastName: "dammaretz",
       dateOfBirth: new Date("01-14-1993"),
-      position: "Web and Software engineer",
+      position: "Full stack engineer",
       email: "theo@dammaretz.fr",
       linkedin: "https://www.linkedin.com/in/theodammaretz/",
       github: "https://github.com/Blightwidow",
