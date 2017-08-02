@@ -7,7 +7,7 @@ install:
 script:
 - npm test
 before_deploy:
-- npm build
+- npm run -s build
 - cd ./dist
 deploy:
   provider: heroku
