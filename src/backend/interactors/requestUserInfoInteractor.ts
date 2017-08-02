@@ -21,7 +21,7 @@ export class RequestUserInfoInteractor implements Interface.RequestHandler {
       errorMessage = e.message;
       isSuccess = false;
     }
-
+    
     return new Dto.UserInfoResponseMessage(user, isSuccess, errorMessage);
   }
 }

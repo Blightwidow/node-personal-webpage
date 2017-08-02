@@ -15,7 +15,7 @@ const baseConfig = {
     __filename: false,
   },
   entry: {
-    server: path.join(__dirname, 'src/backend/server.ts')
+    server: path.join(__dirname, 'src/backend/http/controller.ts')
   },
   output: {
     path: path.join(__dirname, 'app'),

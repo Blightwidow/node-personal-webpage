@@ -2,13 +2,9 @@ import * as Interface from "../interfaces";
 import * as Entity from "../entities";
 
 export class RequestUserInfoViewModel implements Interface.ViewModel {
-  readonly success: boolean;
   readonly data: any;
-  readonly errorMessage: string;
-
-  constructor(userData: any = {}, success: boolean, message: string) {
-    this.success = success;
-    this.errorMessage = message;
+  
+  constructor(userData: any = {}, readonly success: boolean, readonly errorMessage: string) {
     if (success) {
       this.data = userData;
       this.data.title = `${userData.fullname} online resume`;

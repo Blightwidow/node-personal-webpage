@@ -10,8 +10,15 @@ import * as Presenter from "../presenters";
 
 export class ExpressServer {
   private app = express();
+  private userRepository: Gateway.UserRepository;
 
   constructor() {
+    this.userRepository = new Gateway.UserRepository();
+    this.setParameters();
+    this.setRoutes();
+  }
+
+  private setParameters() {
     this.app.set("port", 3000);
     this.app.set("views", path.join(__dirname, "views"));
     this.app.set("view engine", "mustache");
@@ -22,15 +29,11 @@ export class ExpressServer {
     );
   }
 
-  public start() {
-    const userRepository = new Gateway.UserRepository();
-
+  private setRoutes() {
     this.app.get("/", (req, res) => {
       const request = new Dto.UserInfoRequestMessage();
-      const interactor = new Interactor.RequestUserInfoInteractor(userRepository);
-
+      const interactor = new Interactor.RequestUserInfoInteractor(this.userRepository);
       const response = interactor.handle(request);
-
       const vm = new Presenter.RequestUserInfoPresenter().handle(response);
       res.render("layout", vm.data);
     });
@@ -40,7 +43,9 @@ export class ExpressServer {
     this.app.get("*", (req, res) => {
       res.status(404).render("404", {});
     });
+  }
 
+  public start() {
     this.app.listen(this.app.get("port"), () => {
       console.log(
         "  Your app is running at http://localhost:%d in %s mode",
@@ -51,3 +56,6 @@ export class ExpressServer {
     });
   }
 }
+
+const expressServer = new ExpressServer();
+expressServer.start();
