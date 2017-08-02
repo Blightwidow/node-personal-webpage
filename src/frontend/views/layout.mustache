@@ -15,15 +15,13 @@
           <h2 class="console-text caret">{{ headerSubtitle }}</h2>
         </header>
         <nav class="social-wrapper">
-          {{# contactPoints }}
-            {{ address }}
-          {{/ contactPoints }}
+          {{> partials/social-links}}
         </nav>
         <main id="main">
           <div class="bio-wrapper">
-            {{# bio }}
+            {{# biography }}
               <p>{{.}}</p>
-            {{/ bio }}
+            {{/ biography }}
           </div>
           {{# resumeAddress }}
             <a href="{{.}}" class="text-lighter download-cv">Download CV<svg class="text-accent" viewBox="0 0 471.2 471.2" ><g><g>

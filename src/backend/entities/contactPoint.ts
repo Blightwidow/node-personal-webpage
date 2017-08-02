@@ -1,15 +1,15 @@
 enum ContactPointType {
-  Email,
-  Phone,
-  Website,
-  Resume
+  Email = "email",
+  Phone = "phone",
+  Website = "website",
+  Resume = "resume"
 }
 
 export class ContactPoint {
   static readonly Type = ContactPointType;
   readonly type: ContactPointType;
   readonly address: string;
-  private static ADRESS_FORMAT = /^(\d+|https?:\/\/\S+.\S+|\S+@\S+\.\S+)$/;
+  private static ADRESS_FORMAT = /^(\+?\d+|https?:\/\/\S+.\S+|\S+@\S+\.\S+)$/;
 
   constructor(type: ContactPointType, address: string) {
     this.type = type;

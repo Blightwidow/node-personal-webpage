@@ -26,7 +26,7 @@ export class UserRepository implements Interface.UserRepository {
 
   public getById(id: number): Entity.User {
     for (let i = 0; i < this._store.length; i++) {
-      let user = this._store[i];
+      const user = this._store[i];
       if (user.id === id) {
         return user;
       }

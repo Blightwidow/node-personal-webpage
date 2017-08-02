@@ -10,7 +10,7 @@ export class RequestUserInfoInteractor implements Interface.RequestHandler {
   }
 
   public handle(req: Dto.UserInfoRequestMessage): Dto.UserInfoResponseMessage {
-    let user = null;
+    let user = undefined;
     let errorMessage = "";
     let isSuccess = true;
 

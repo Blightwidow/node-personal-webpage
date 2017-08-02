@@ -5,14 +5,14 @@ import { RequestUserInfoViewModel } from "./";
 export class RequestUserInfoPresenter {
   public handle(response: Dto.UserInfoResponseMessage): RequestUserInfoViewModel {
     if (response.success) {
-      let userData = this.getFormattedUserData(response.user);
+      const userData = this.getFormattedUserData(response.user);
       return new RequestUserInfoViewModel(userData, true, "");
     } else {
       return new RequestUserInfoViewModel(undefined, false, response.message);
     }
   }
 
-  private getFormattedUserData(user: Entity.User): Object {
+  private getFormattedUserData(user: Entity.User): any {
     return {
       fullname: this.getFullname(user),
       position: user.position,
@@ -23,17 +23,17 @@ export class RequestUserInfoPresenter {
   }
 
   private getFullname(user: Entity.User): string {
-    let firstName =
+    const firstName =
       user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
-    let lastName =
+    const lastName =
       user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
     return `${firstName} ${lastName}`;
   }
 
   private getSocialLinks(user: Entity.User): Array<Object> {
-    let socialLinks = [];
-    for (var i = 0; i < user.contactInfos.length; i++) {
-      let contact = user.contactInfos[i];
+    const socialLinks = [];
+    for (let i = 0; i < user.contactInfos.length; i++) {
+      const contact = user.contactInfos[i];
       if (contact.type !== Entity.ContactPoint.Type.Resume) {
         socialLinks.push(contact);
       }
@@ -41,21 +41,8 @@ export class RequestUserInfoPresenter {
     return socialLinks;
   }
 
-  // private formatSocialLink(address: string, type: number): string {
-  //   switch (type) {
-  //     case Entity.ContactPoint.Type.Website:
-  //       return address;
-  //     case Entity.ContactPoint.Type.Email:
-  //       return `mailto:${address}`;
-  //     case Entity.ContactPoint.Type.Phone:
-  //       return `tel:${address}`;
-  //     default:
-  //       return undefined;
-  //   }
-  // }
-
   private getResumeAddress(user: Entity.User): string {
-    for (var i = 0; i < user.contactInfos.length; i++) {
+    for (let i = 0; i < user.contactInfos.length; i++) {
       if (user.contactInfos[i].type === Entity.ContactPoint.Type.Resume) {
         return user.contactInfos[i].address;
       }
