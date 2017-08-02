@@ -17,13 +17,15 @@ installed() {
 }
 
 install_node() {
-  if ! installed npm; then
+  if ! installed nvm; then
     if linux; then
-    	sudo apt-get install -y npm
+    	sudo apt-get install -y npm mvm
     elif mac && installed brew; then
-      brew install npm
+      brew install npm nvm
     fi
   fi
+  nvm install node
+  nvm use node
 	npm install
 }
 
