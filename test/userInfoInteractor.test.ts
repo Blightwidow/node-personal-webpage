@@ -50,6 +50,6 @@ describe("Request an nonexisting user", () => {
     expect(response.message).toBeTruthy();
   });
   it("should not return a user", () => {
-    expect(response.user).toBe(null);
+    expect(response.user).toBeFalsy();
   });
 });
