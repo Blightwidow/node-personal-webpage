@@ -4,6 +4,10 @@
   "description": "An express app for Theo Dammaretz online resume and website",
   "author": "Theo Dammaretz",
   "license": "MIT",
+  "main": "dist/server.js",
+  "engines": {
+    "node": "8.2.1"
+  },
   "scripts": {
     "test": "jest --forceExit",
     "test:watch": "jest --watch --coverage",
@@ -11,7 +15,7 @@
     "tslint": "tslint --fix -c tslint.json -p tsconfig.json",
     "csslint": "stylelint --fix src/**/*.css",
     "build": "webpack --env production",
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "watch": "concurrently -k --names \"Webpack,Node\" -c \"blue.bold,magenta.bold\" \"webpack --colors -w\" \"nodemon app/server.js\""
   },
   "jest": {

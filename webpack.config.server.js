@@ -9,7 +9,7 @@ const nodeModules = getExternalNode();
 const baseConfig = {
   target: 'node',
   name: 'server',
-  context: path.join(__dirname, "app"),
+  context: path.join(__dirname, "dist"),
   node: {
     __dirname: false,
     __filename: false,
@@ -18,7 +18,7 @@ const baseConfig = {
     server: path.join(__dirname, 'src/backend/http/controller.ts')
   },
   output: {
-    path: path.join(__dirname, 'app'),
+    path: path.join(__dirname, 'dist'),
     filename: 'server.js'
   },
   externals: nodeModules,
