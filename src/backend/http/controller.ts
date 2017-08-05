@@ -19,7 +19,7 @@ export class ExpressServer {
   }
 
   private setParameters() {
-    this.app.set("port", 3000);
+    this.app.set("port", process.env.PORT || 3000);
     this.app.set("views", path.join(__dirname, "views"));
     this.app.set("view engine", "mustache");
     this.app.engine("mustache", mustache.create());
